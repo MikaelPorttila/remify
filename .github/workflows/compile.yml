@@ -35,7 +35,7 @@ jobs:
       run: pnpm install
 
     - name: Package
-      run: vsce package --no-dependencies ${{VERSION}}
+      run: vsce package --no-dependencies ${VERSION}
     
     - name: Grab artifacts
       uses: actions/upload-artifact@v3.1.1
