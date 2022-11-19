@@ -115,3 +115,4 @@ tsconfig.lsif.json
 *.db
 .vscode-test
 out
+*.vsix
