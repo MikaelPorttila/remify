@@ -102,3 +102,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+# VSCode Extension related items
+.DS_Store
+npm-debug.log
+Thumbs.db
+*/node_modules/
+*/out/
+*/.vs/
+tsconfig.lsif.json
+*.lsif
+*.db
+.vscode-test
+out
