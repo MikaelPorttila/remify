@@ -8,8 +8,6 @@ on:
 
 jobs:
   build:
-    env:
-      VERSION: 0.0.1
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,9 +20,6 @@ jobs:
       with:
         version: 7
 
-    - name: Set VERSION variable from tag
-      run: echo "VERSION=${GITHUB_REF/refs\/tags\/}" >> $GITHUB_ENV
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -35,7 +30,7 @@ jobs:
       run: pnpm install
 
     - name: Package
-      run: pnpm package "${VERSION}"
+      run: pnpm package
     
     - name: Grab artifacts
       uses: actions/upload-artifact@v3.1.1
