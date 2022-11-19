@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 		let targets: any[] = [];
 
 		let replacements: any = [];
-		const matches = selectedText.matchAll(/\d*\.?\d+(?:(px|in)|%)?/g);
+		const matches = selectedText.matchAll(/\d*\.?\d+(?:(px)|%)?/g);
 		let entriesCounter = 0;
 		let batchCallCounter = 0;
 
@@ -51,7 +51,6 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		if (initialText !== selectedText) {
-			// update
 			editor?.edit((edit) => {
 				edit.replace(editor.selection, selectedText);
 			});
@@ -60,13 +59,9 @@ export function activate(context: vscode.ExtensionContext) {
 		else {
 			console.log('No changes.');
 		}
-
-		
-		//vscode.window.showInformationMessage('Hello World from CSS Unit Converter!');
 	});
 
 	context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}

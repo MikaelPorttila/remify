@@ -3,6 +3,7 @@
   "displayName": "Remify",
   "description": "Convert selected PX to REM",
   "version": "0.0.1",
+  "repository": "https://github.com/MikaelPorttila/remify",
   "engines": {
     "vscode": "^1.73.0"
   },
