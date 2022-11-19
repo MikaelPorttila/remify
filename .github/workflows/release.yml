@@ -1,4 +1,4 @@
-name: Compile
+name: Release
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       run: pnpm install
       
     - name: Update Version
-      run: pnpm version ${VERSION}
+      run: npm version --no-git-tag-version ${VERSION}
 
     - name: Package
       run: pnpm exec vsce package --no-dependencies
