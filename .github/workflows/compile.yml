@@ -25,10 +25,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-    - name: Install and build
-      run: |
-            pnpm install
-            pnpm package
+    - name: Install deps
+      run: pnpm install
+    - name: Package
+      run: pnpm package
+            
     #- name: Archive production artifacts
     #    uses: actions/upload-artifact@v2
     #    with:
