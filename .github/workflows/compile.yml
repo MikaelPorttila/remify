@@ -29,11 +29,11 @@ jobs:
       run: pnpm install
     - name: Package
       run: pnpm package
-            
-    #- name: Archive production artifacts
-    #    uses: actions/upload-artifact@v2
-    #    with:
-    #      name: dist-without-markdown
-    #      path: |
-    #        remify-*.vsix
+    
+    - name: Grab artifacts
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        name: dist-without-markdown
+        path: remify-*.vsix
+           
       
