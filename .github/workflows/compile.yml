@@ -34,7 +34,7 @@ jobs:
       run: pnpm install
 
     - name: Package
-      run: pnpm package -- ${{VERSION}}
+      run: 'pnpm package -- ${{ VERSION }}'
     
     - name: Grab artifacts
       uses: actions/upload-artifact@v3.1.1
