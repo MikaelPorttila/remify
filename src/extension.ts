@@ -12,30 +12,37 @@ export function activate(context: vscode.ExtensionContext) {
 
 		const initialText = selectedText;
 
-		// Find all values
-		let targets: any[] = [];
-
 		let replacements: any = [];
-		const matches = selectedText.matchAll(/\d*\.?\d+(?:(px)|%)?/g);
+		const matches = selectedText.matchAll(/\d*\.?\d+(?:(px)|%)/g);
 		let entriesCounter = 0;
 		let batchCallCounter = 0;
 
 		for (let hit of matches) {
 			const text = hit[0];
 			entriesCounter++;
+			
 			if (!replacements[text]) {
 				let value = parseInt(text, 10);
 				const unit = text.split(value + '')[1].toLocaleLowerCase();
 
-				switch(unit) {
-					case 'px':
-						value = value * 0.0625;
-					break;
-				}
+				if (unit) {
+					let supported = false;
+					switch(unit) {
+						case 'px':
+							value = value * 0.0625;
+							supported = true;
+						break;
+						default:
+							console.log('Unsupported unit', unit);
+						break;
+					}
 
-				replacements[text] = true;
-				selectedText = replaceAll(selectedText, text, value + 'rem');
-				batchCallCounter++;
+					if (supported) {
+						replacements[text] = true;
+						selectedText = replaceAll(selectedText, text, value + 'rem');
+						batchCallCounter++;
+					}
+				}
 			}
 		}
 
