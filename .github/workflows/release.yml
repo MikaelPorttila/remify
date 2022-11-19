@@ -30,9 +30,12 @@ jobs:
 
     - name: Install deps
       run: pnpm install
+      
+    - name: Update Version
+      run: pnpm version ${VERSION}
 
     - name: Package
-      run: 'pnpm exec vsce package --no-dependencies -- ${VERSION}'
+      run: pnpm exec vsce package --no-dependencies
 
     - name: Grab artifacts
       uses: actions/upload-artifact@v3.1.1
