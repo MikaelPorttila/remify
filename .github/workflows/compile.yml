@@ -33,7 +33,7 @@ jobs:
     - name: Grab artifacts
       uses: actions/upload-artifact@v3.1.1
       with:
-        name: dist-without-markdown
+        name: remify-vscode-extension
         path: remify-*.vsix
            
       
