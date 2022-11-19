@@ -4,6 +4,7 @@
   "description": "Convert selected PX to REM",
   "version": "0.0.1",
   "repository": "https://github.com/MikaelPorttila/remify",
+  "publisher": "Mikael Porttila",
   "engines": {
     "vscode": "^1.73.0"
   },
@@ -28,7 +29,9 @@
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/run-test.js"
+    "test": "node ./out/test/run-test.js",
+    "package": "vsce package --no-dependencies",
+    "pub": "vsce publish"
   },
   "devDependencies": {
     "@types/vscode": "^1.73.0",
