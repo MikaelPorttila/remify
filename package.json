@@ -2,7 +2,7 @@
   "name": "remify",
   "displayName": "Remify",
   "description": "Convert selected PX to REM",
-  "version": "1.5.0",
+  "version": "3.5.0",
   "repository": "https://github.com/MikaelPorttila/remify",
   "publisher": "Mikael Porttila",
   "engines": {
