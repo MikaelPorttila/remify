@@ -1,4 +1,4 @@
-name: Compile
+name: Release
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  build:
+  release:
 
     runs-on: ubuntu-latest
 
@@ -30,9 +30,12 @@ jobs:
 
     - name: Install deps
       run: pnpm install
+      
+    - name: Update Version
+      run: npm version --no-git-tag-version ${VERSION}
 
     - name: Package
-      run: pnpm package -- ${VERSION}
+      run: pnpm exec vsce package --no-dependencies
 
     - name: Grab artifacts
       uses: actions/upload-artifact@v3.1.1
