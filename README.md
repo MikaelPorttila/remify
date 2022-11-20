@@ -1,5 +1,8 @@
 # Remify
-A lightweight and easy-to-use extension for converting CSS units to REM units
+_![CI](https://github.com/MikaelPorttila/remify/workflows/Release/badge.svg?branch=main)
+[![tag](https://img.shields.io/github/tag/MikaelPorttila/remify.svg)](https://github.com/MikaelPorttila/remify/releases)_
+
+A lightweight and easy-to-use extension for converting CSS absolute length units to REM
 
 ## Features
 
@@ -9,10 +12,3 @@ A lightweight and easy-to-use extension for converting CSS units to REM units
 - MM -> REM
 - CM -> REM
 - PC -> REM
-
-
-## Local install
-
-```
-code --install-extension my-extension-<version>.vsix
-```

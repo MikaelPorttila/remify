@@ -1,7 +1,7 @@
 {
   "name": "remify",
   "displayName": "Remify",
-  "description": "Convert selected PX to REM",
+  "description": "Convert selected absolute length units to REM",
   "version": "1.1.2",
   "repository": "https://github.com/MikaelPorttila/remify",
   "publisher": "Ecodot",
