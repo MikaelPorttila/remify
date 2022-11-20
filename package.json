@@ -4,7 +4,7 @@
   "description": "Convert selected PX to REM",
   "version": "1.1.2",
   "repository": "https://github.com/MikaelPorttila/remify",
-  "publisher": "Mikael Porttila",
+  "publisher": "Ecodot",
   "engines": {
     "vscode": "^1.73.0"
   },
