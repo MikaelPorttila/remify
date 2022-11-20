@@ -15,5 +15,5 @@ A lightweight and easy-to-use extension for converting CSS absolute length units
 
 # Usage
 - Select editor text
-- Press F1 and type **remify** and
+- Press F1 and type **remify**
 - Hit enter
