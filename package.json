@@ -19,7 +19,7 @@
     "commands": [
       {
         "command": "remify.remify",
-        "title": "Remify: Absolute unit -> REM"
+        "title": "Remify: Absolute length unit -> REM"
       }
     ]
   },
