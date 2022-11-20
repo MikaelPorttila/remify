@@ -19,7 +19,7 @@
     "commands": [
       {
         "command": "remify.remify",
-        "title": "Remify: PX -> REM"
+        "title": "Remify: Absolute unit -> REM"
       }
     ]
   },

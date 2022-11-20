@@ -13,8 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let disposable = vscode.commands.registerCommand('remify.remify', () => {
 		const editor = vscode.window.activeTextEditor;
-
-		if (!editor || !editor.selections || editor.selections.length === 0) {
+		
+		if (!editor || !editor?.selections || editor.selections?.length === 0) {
 			vscode.window.showInformationMessage('Select text containing non-rem units.');
 			return;
 		}
@@ -23,6 +23,15 @@ export function activate(context: vscode.ExtensionContext) {
 		const entries = editor.selections
 			.map((selection) => ({ selection, text: editor.document.getText(selection) as string}))
 			.reduce((result, entry) => {
+				let selection = entry.selection;
+				if (entry.selection.isEmpty) {
+					const wordRange = editor.document.getWordRangeAtPosition(entry.selection.start);
+					if (wordRange) {
+						entry.text = editor.document.getText(wordRange);
+						selection = new vscode.Selection(wordRange.start, wordRange.end);
+					}
+				}
+
 				if (entry.text) {
 					let editText = entry.text;
 					const handledEntries: any = [];
@@ -38,7 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 
 					if (editText !== entry.text) {
-						result.push({selection: entry.selection, editText});
+						result.push({selection, editText});
 					}
 				}
 
