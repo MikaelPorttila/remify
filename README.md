@@ -12,3 +12,8 @@ A lightweight and easy-to-use extension for converting CSS absolute length units
 - MM -> REM
 - CM -> REM
 - PC -> REM
+
+# Usage
+- Select editor text
+- Press F1 and type **remify** and
+- Hit enter

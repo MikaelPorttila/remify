@@ -13,48 +13,44 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let disposable = vscode.commands.registerCommand('remify.remify', () => {
 		const editor = vscode.window.activeTextEditor;
-		let selectedText = editor?.document.getText(editor.selection) as string;
-		
-		if (!selectedText) {
+
+		if (!editor || !editor.selections || editor.selections.length === 0) {
 			vscode.window.showInformationMessage('Select text containing non-rem units.');
 			return;
 		}
 
-		const initialText = selectedText;
+		const pattern = /\d*\.?\d+(?:(px|pt|in|mm|cm|pc)|%)/g;
+		const entries = editor.selections
+			.map((selection) => ({ selection, text: editor.document.getText(selection) as string}))
+			.reduce((result, entry) => {
+				if (entry.text) {
+					let editText = entry.text;
+					const handledEntries: any = [];
 
-		let replacements: any = [];
-		const matches = selectedText.matchAll(/\d*\.?\d+(?:(px|pt|in|mm|cm|pc)|%)/g);
-		let entriesCounter = 0;
-		let batchCallCounter = 0;
+					const matches = entry.text.matchAll(pattern);
+					for (const [text, unitName] of matches) {
+						const unit = supportedUnits.get(unitName);
 
-		for (let hit of matches) {
-			const text = hit[0];
-			entriesCounter++;
-			
-			if (!replacements[text]) {
-				let value = parseInt(text, 10);
-				const unit = text.split(value + '')[1].toLocaleLowerCase();
-				const unitFormat = supportedUnits.get(unit);
+						if (!handledEntries[text] && unit) {
+							handledEntries[text] = true;
+							editText = replaceAll(editText, text, (parseInt(text, 10) * unit.multiplier) + 'rem');
+						}
+					}
 
-				if (unitFormat) {
-					value = value * unitFormat.multiplier;
-					replacements[text] = true;
-					selectedText = replaceAll(selectedText, text, value + 'rem');
-					batchCallCounter++;
-				} else {
-					console.log('Unsupported unit', unit);
+					if (editText !== entry.text) {
+						result.push({selection: entry.selection, editText});
+					}
 				}
-			}
-		}
 
-		if (initialText !== selectedText) {
-			editor?.edit((edit) => {
-				edit.replace(editor.selection, selectedText);
+				return result;
+			}, [] as { selection: vscode.Selection, editText: string }[]);
+
+		if (entries.length > 0) {
+			editor.edit((edit) => {
+				for (const editEntry of entries) {
+					edit.replace(editEntry.selection, editEntry.editText);
+				}
 			});
-			console.log(`${batchCallCounter} batch edits, ${entriesCounter} entries updated.`);
-		}
-		else {
-			console.log('No changes.');
 		}
 	});
 
