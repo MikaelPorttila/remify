@@ -6,7 +6,7 @@
   "repository": "https://github.com/MikaelPorttila/remify",
   "publisher": "Ecodot",
   "engines": {
-    "vscode": "^1.73.0"
+    "vscode": "^1.63.0"
   },
   "categories": [
     "Other"
